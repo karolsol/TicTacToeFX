@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pack.Controller">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <TextArea fx:id="txa1" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Player: O" text="Player: O">
+         <font>
+            <Font name="System Italic" size="53.0" />
+         </font></TextArea>
+      <GridPane alignment="center" hgap="10" prefHeight="301.0" prefWidth="300.0" vgap="10">
+         <columnConstraints>
+            <ColumnConstraints maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints maxHeight="300.0" minHeight="300.0" prefHeight="300.0" />
+         </rowConstraints>
+         <children>
+            <Pane maxHeight="307.0" maxWidth="300.0" minHeight="300.0" minWidth="300.0" prefHeight="307.0" prefWidth="300.0" GridPane.rowIndex="1">
+               <children>
+                  <Line fx:id="line1" endX="200.0" layoutX="100.0" layoutY="100.0" startX="-100.0" strokeWidth="2.0" />
+                  <Line fx:id="line2" endX="200.0" layoutX="100.0" layoutY="200.0" startX="-100.0" strokeWidth="2.0" />
+                  <Line endX="100.0" endY="300.0" startX="100.0" strokeWidth="2.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Line>
+                  <Line endX="200.0" endY="300.0" startX="200.0" strokeWidth="2.0" />
+                  <Button id="00" fx:id="zz" mnemonicParsing="false" onAction="#zz" prefHeight="98.0" prefWidth="99.0" textOverrun="CLIP">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Button>
+                  <Button id="00" fx:id="zo" layoutX="101.0" mnemonicParsing="false" onAction="#zo" prefHeight="98.0" prefWidth="98.0" textOverrun="CLIP" />
+                  <Button id="00" fx:id="zt" layoutX="201.0" mnemonicParsing="false" onAction="#zt" prefHeight="98.0" prefWidth="99.0" textOverrun="CLIP" />
+                  <Button id="00" fx:id="oz" layoutY="101.0" mnemonicParsing="false" onAction="#oz" prefHeight="97.0" prefWidth="99.0" textOverrun="CLIP" />
+                  <Button id="00" fx:id="oo" layoutX="101.0" layoutY="101.0" mnemonicParsing="false" onAction="#oo" prefHeight="97.0" prefWidth="98.0" textOverrun="CLIP" />
+                  <Button id="00" fx:id="ot" layoutX="201.0" layoutY="101.0" mnemonicParsing="false" onAction="#ot" prefHeight="97.0" prefWidth="99.0" textOverrun="CLIP" />
+                  <Button id="00" fx:id="tz" layoutY="201.0" mnemonicParsing="false" onAction="#tz" prefHeight="98.0" prefWidth="99.0" textOverrun="CLIP" />
+                  <Button id="00" fx:id="to" layoutX="101.0" layoutY="201.0" mnemonicParsing="false" onAction="#to" prefHeight="98.0" prefWidth="98.0" textOverrun="CLIP" />
+                  <Button id="00" fx:id="tt" layoutX="201.0" layoutY="201.0" mnemonicParsing="false" onAction="#tt" prefHeight="99.0" prefWidth="99.0" textOverrun="CLIP" />
+               </children>
+               <GridPane.margin>
+                  <Insets top="100.0" />
+               </GridPane.margin>
+            </Pane>
+         </children>
+      </GridPane>
+   </children>
+</GridPane>

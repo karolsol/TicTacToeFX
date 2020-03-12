@@ -1,0 +1,14 @@
+.root{
+    -fx-base: #424242;
+    -fx-background-color: #424242;
+}
+.button{
+    -fx-background-color: #2E2E2E;
+}
+.BigText{
+    -fx-font-size: 20;
+    -fx-text-fill: D8D8D8;
+}
+.SmallText{
+    -fx-text-fill: D8D8D8;
+}
