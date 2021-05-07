@@ -37,9 +37,9 @@ public class Controller {
     @FXML
     TextArea txa1;
 
-    private Image X = new Image(getClass().getResourceAsStream("images/X.png"));
-    private Image O = new Image(getClass().getResourceAsStream("images/O.png"));
-    private Image T = new Image(getClass().getResourceAsStream("images/transparent.png"));
+    private final Image X = new Image(getClass().getResourceAsStream("/images/X.png"));
+    private final Image O = new Image(getClass().getResourceAsStream("/images/O.png"));
+    private final Image T = new Image(getClass().getResourceAsStream("/images/transparent.png"));
 
     game game = new game();
 
@@ -99,16 +99,16 @@ public class Controller {
     private void setImage(Button x, int i, int b) {
         if (game.isEmpty(i, b)) {
             switch (XO) {
-                case "X":
+                case "X" -> {
                     setX(x);
                     game.play(i, b, "X");
                     player("X");
-                    break;
-                case "O":
+                }
+                case "O" -> {
                     setO(x);
                     game.play(i, b, "O");
                     player("O");
-                    break;
+                }
             }
             setPadding(x);
         }
@@ -213,12 +213,11 @@ public class Controller {
         Scene scene = new Scene(box, 250, 150);
 
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("images/transparent.png")));
-        scene.getStylesheets().add("pack/alert_style.css");
+        stage.getIcons().add(T);
+        scene.getStylesheets().add("/alert_style.css");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-
     }
 }
 
