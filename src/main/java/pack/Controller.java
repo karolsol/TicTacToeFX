@@ -2,17 +2,10 @@ package pack;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class Controller {
 
@@ -39,11 +32,10 @@ public class Controller {
 
     private final Image X = new Image(getClass().getResourceAsStream("/images/X.png"));
     private final Image O = new Image(getClass().getResourceAsStream("/images/O.png"));
-    private final Image T = new Image(getClass().getResourceAsStream("/images/transparent.png"));
 
-    game game = new game();
+    GameCore core = new GameCore();
 
-    private String XO = "O";
+    private String playerTurn = "O";
 
     public void zz() {
         setImage(zz, 0, 0);
@@ -82,31 +74,31 @@ public class Controller {
     }
 
     private void player(String a) {
-        if (game.win(a)) {
+        if (core.win(a)) {
             win(a);
-        } else if (game.draw()) {
+        } else if (core.draw()) {
             win();
         } else {
             if (a.equals("X")) {
-                XO = "O";
+                playerTurn = "O";
             } else if (a.equals("O")) {
-                XO = "X";
+                playerTurn = "X";
             }
-            txa1.setText("Player: " + XO);
+            txa1.setText("Player: " + playerTurn);
         }
     }
 
     private void setImage(Button x, int i, int b) {
-        if (game.isEmpty(i, b)) {
-            switch (XO) {
+        if (core.isEmpty(i, b)) {
+            switch (playerTurn) {
                 case "X" -> {
                     setX(x);
-                    game.play(i, b, "X");
+                    core.play(i, b, "X");
                     player("X");
                 }
                 case "O" -> {
                     setO(x);
-                    game.play(i, b, "O");
+                    core.play(i, b, "O");
                     player("O");
                 }
             }
@@ -115,7 +107,7 @@ public class Controller {
     }
 
     private void win(String a) {
-        open(a);
+        openDialogWindow(a);
     }
 
     private void win() {
@@ -123,20 +115,20 @@ public class Controller {
     }
 
     private void retry() {
-        retry1(zz);
-        retry1(zo);
-        retry1(zt);
-        retry1(oz);
-        retry1(oo);
-        retry1(ot);
-        retry1(tz);
-        retry1(to);
-        retry1(tt);
-        game.clear();
+        clearContentOfButton(zz);
+        clearContentOfButton(zo);
+        clearContentOfButton(zt);
+        clearContentOfButton(oz);
+        clearContentOfButton(oo);
+        clearContentOfButton(ot);
+        clearContentOfButton(tz);
+        clearContentOfButton(to);
+        clearContentOfButton(tt);
+        core.clear();
     }
 
-    private void setClear(Button x) {
-        x.setGraphic(new ImageView(T));
+    private void deleteImageFromButton(Button x) {
+        x.setGraphic(new ImageView());
     }
 
     private void setX(Button x) {
@@ -151,73 +143,17 @@ public class Controller {
         b.setPadding(new Insets(0, 0, 0, -2));
     }
 
-    private void retry1(Button x) {
-        setClear(x);
+    private void clearContentOfButton(Button x) {
+        deleteImageFromButton(x);
         setPadding(x);
     }
 
-    private void open(String a) {
-        Stage stage = new Stage();
-
-        Button btn1 = new Button();
-        Button btn2 = new Button();
-
-        btn1.setPrefSize(90, 30);
-        btn2.setPrefSize(90, 30);
-
-
-        Label label1 = new Label();
-        Label label = new Label("Do you want to play again?");
-
-        label1.getStyleClass().add("BigText");
-        label1.getStyleClass().add("SmallText");
-
-        btn1.setText("Retry");
-        btn2.setText("Close");
-
-        if (a.equals("X") || a.equals("O")) {
-            label1.setText("Player: " + a + " win");
-        } else if (a.equals("draw")) {
-            label1.setText("Draw");
-        }
-
-        stage.setOnCloseRequest(e -> {
-            stage.close();
-            System.exit(0);
-        });
-
-        btn1.setOnAction(e -> {
+    private void openDialogWindow(String a) {
+        if (AlertController.open(a)) {
             retry();
-            stage.close();
-        });
-
-        btn2.setOnAction(e -> System.exit(0));
-
-
-        VBox box = new VBox();
-        VBox vbox = new VBox(label1, label);
-        HBox hbox = new HBox(btn1, btn2);
-
-        box.setPadding(new Insets(10));
-
-        hbox.setSpacing(30);
-        box.setSpacing(30);
-
-        box.setAlignment(Pos.CENTER);
-        vbox.setAlignment(Pos.CENTER);
-        hbox.setAlignment(Pos.CENTER);
-
-        box.getChildren().add(vbox);
-        box.getChildren().add(hbox);
-
-        Scene scene = new Scene(box, 250, 150);
-
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.getIcons().add(T);
-        scene.getStylesheets().add("/alert_style.css");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        } else {
+            System.exit(0);
+        }
     }
 }
 
