@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AlertController {
@@ -75,7 +76,7 @@ public class AlertController {
         Scene scene = new Scene(box, 250, 150);
 
         stage.initModality(Modality.APPLICATION_MODAL);
-        scene.getStylesheets().add("/alert_style.css");
+        scene.getStylesheets().add(Objects.requireNonNull(AlertController.class.getResource("/css/alert_style.css")).toString());
         stage.setResizable(false);
         stage.setScene(scene);
         stage.showAndWait();

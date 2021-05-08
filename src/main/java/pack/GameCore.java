@@ -52,11 +52,7 @@ public class GameCore {
     }
 
     public boolean draw() {
-        boolean value = false;
-        if (moveCount == 9) {
-            value = true;
-        }
-        return value;
+        return moveCount == 9;
     }
 
     public void clear() {

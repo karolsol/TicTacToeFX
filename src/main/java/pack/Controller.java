@@ -7,6 +7,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.Objects;
+
 public class Controller {
 
     @FXML
@@ -30,8 +32,8 @@ public class Controller {
     @FXML
     TextArea txa1;
 
-    private final Image X = new Image(getClass().getResourceAsStream("/images/X.png"));
-    private final Image O = new Image(getClass().getResourceAsStream("/images/O.png"));
+    private final Image X = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/X.png")));
+    private final Image O = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/O.png")));
 
     GameCore core = new GameCore();
 
@@ -91,17 +93,11 @@ public class Controller {
     private void setImage(Button x, int i, int b) {
         if (core.isEmpty(i, b)) {
             switch (playerTurn) {
-                case "X" -> {
-                    setX(x);
-                    core.play(i, b, "X");
-                    player("X");
-                }
-                case "O" -> {
-                    setO(x);
-                    core.play(i, b, "O");
-                    player("O");
-                }
+                case "X" -> setX(x);
+                case "O" -> setO(x);
             }
+            core.play(i, b, playerTurn);
+            player(playerTurn);
             setPadding(x);
         }
     }

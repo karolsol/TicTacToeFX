@@ -32,8 +32,8 @@
          <GridPane.margin>
             <Insets top="100.0"/>
          </GridPane.margin>
-         <Line fx:id="line1" endX="200.0" layoutX="100.0" layoutY="100.0" startX="-100.0" strokeWidth="2.0"/>
-         <Line fx:id="line2" endX="200.0" layoutX="100.0" layoutY="200.0" startX="-100.0" strokeWidth="2.0"/>
+         <Line endX="200.0" layoutX="100.0" layoutY="100.0" startX="-100.0" strokeWidth="2.0"/>
+         <Line endX="200.0" layoutX="100.0" layoutY="200.0" startX="-100.0" strokeWidth="2.0"/>
          <Line endX="100.0" endY="300.0" startX="100.0" strokeWidth="2.0">
             <rotationAxis>
                <Point3D/>
