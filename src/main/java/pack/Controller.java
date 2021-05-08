@@ -1,12 +1,17 @@
 package pack;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class Controller {
@@ -145,10 +150,31 @@ public class Controller {
     }
 
     private void openDialogWindow(String a) {
-        if (AlertController.open(a)) {
-            retry();
-        } else {
-            System.exit(0);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/alert.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(loader.load());
+
+            Stage stage = new Stage();
+
+            stage.setOnCloseRequest(e -> stage.close());
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.initOwner(txa1.getScene().getWindow());
+            stage.setScene(scene);
+            loader.<AlertController>getController().setAlertParams(a);
+            stage.showAndWait();
+
+            if (loader.<AlertController>getController().getResult()) {
+                retry();
+            } else {
+                System.exit(0);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
         }
     }
 }
