@@ -2,6 +2,8 @@ stages:
   - build
   - test
 
+image: maven:latest
+
 build:
   stage: build
   script:
