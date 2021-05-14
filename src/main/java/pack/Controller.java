@@ -40,7 +40,7 @@ public class Controller {
     private final Image X = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/X.png")));
     private final Image O = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/O.png")));
 
-    GameCore core = new GameCore();
+    final GameCore core = new GameCore();
 
     private String playerTurn = "O";
 
@@ -150,14 +150,12 @@ public class Controller {
     }
 
     private void openDialogWindow(String a) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/alert.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Alert.fxml"));
         Scene scene;
         try {
             scene = new Scene(loader.load());
 
             Stage stage = new Stage();
-
-            stage.setOnCloseRequest(e -> stage.close());
 
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);

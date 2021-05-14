@@ -32,7 +32,7 @@ public class AlertController {
     }
 
     public void setAlertParams(String a) {
-        vbox.getStylesheets().add(Objects.requireNonNull(AlertController.class.getResource("/css/alert_style.css")).toString());
+        vbox.getStylesheets().add(Objects.requireNonNull(AlertController.class.getResource("/css/AlertStyle.css")).toString());
 
         label1.getStyleClass().add("BigText");
         label.getStyleClass().add("SmallText");
