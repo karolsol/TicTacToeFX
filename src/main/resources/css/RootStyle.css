@@ -1,12 +1,13 @@
-.root{
+.root {
     -fx-base: #424242;
 }
-.button{
+.button {
     -fx-background-color: #2E2E2E;
+    -fx-background-radius: 0px;
 }
 .text-area {
     -fx-text-fill: #D8D8D8;
 }
-.text-area .content{
+.text-area .content {
     -fx-background-color: #424242;
 }
