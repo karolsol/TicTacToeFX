@@ -2,7 +2,6 @@ package pack;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -103,7 +102,6 @@ public class Controller {
             }
             core.play(i, b, playerTurn);
             player(playerTurn);
-            setPadding(x);
         }
     }
 
@@ -116,15 +114,15 @@ public class Controller {
     }
 
     private void retry() {
-        clearContentOfButton(zz);
-        clearContentOfButton(zo);
-        clearContentOfButton(zt);
-        clearContentOfButton(oz);
-        clearContentOfButton(oo);
-        clearContentOfButton(ot);
-        clearContentOfButton(tz);
-        clearContentOfButton(to);
-        clearContentOfButton(tt);
+        deleteImageFromButton(zz);
+        deleteImageFromButton(zo);
+        deleteImageFromButton(zt);
+        deleteImageFromButton(oz);
+        deleteImageFromButton(oo);
+        deleteImageFromButton(ot);
+        deleteImageFromButton(tz);
+        deleteImageFromButton(to);
+        deleteImageFromButton(tt);
         core.clear();
     }
 
@@ -138,15 +136,6 @@ public class Controller {
 
     private void setO(Button x) {
         x.setGraphic(new ImageView(O));
-    }
-
-    private void setPadding(Button b) {
-        b.setPadding(new Insets(0, 0, 0, -2));
-    }
-
-    private void clearContentOfButton(Button x) {
-        deleteImageFromButton(x);
-        setPadding(x);
     }
 
     private void openDialogWindow(String a) {

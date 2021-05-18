@@ -5,7 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AlertController {
@@ -32,7 +31,7 @@ public class AlertController {
     }
 
     public void setAlertParams(String a) {
-        vbox.getStylesheets().add(Objects.requireNonNull(AlertController.class.getResource("/css/AlertStyle.css")).toString());
+        vbox.getStylesheets().add(String.valueOf(AlertController.class.getResource("/css/AlertStyle.css")));
 
         label1.getStyleClass().add("BigText");
         label.getStyleClass().add("SmallText");

@@ -16,7 +16,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Root.fxml")));
         primaryStage.setTitle("Tic Tac Toe");
         Scene scene = new Scene(root, 300, 400);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/RootStyle.css")).toString());
+        scene.getStylesheets().add(String.valueOf(getClass().getResource("/css/RootStyle.css")));
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Icon.png"))));
         primaryStage.setResizable(false);
