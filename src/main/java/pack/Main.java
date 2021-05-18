@@ -16,12 +16,19 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Root.fxml")));
         primaryStage.setTitle("Tic Tac Toe");
         Scene scene = new Scene(root, 300, 400);
-        scene.getStylesheets().add(String.valueOf(getClass().getResource("/css/RootStyle.css")));
+        ConfigLoader configLoader = new ConfigLoader();
+        if (configLoader.getTheme().equals("dark")) {
+            scene.getStylesheets().add(String.valueOf(getClass().getResource("/css/RootStyle.css")));
+        } else {
+            scene.getStylesheets().add(String.valueOf(getClass().getResource("/css/RootStyleLight.css")));
+        }
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Icon.png"))));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
 
-    public static void main(String[] args){ launch(args); }
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

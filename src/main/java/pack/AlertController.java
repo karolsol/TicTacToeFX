@@ -31,7 +31,12 @@ public class AlertController {
     }
 
     public void setAlertParams(String a) {
-        vbox.getStylesheets().add(String.valueOf(AlertController.class.getResource("/css/AlertStyle.css")));
+        ConfigLoader configLoader = new ConfigLoader();
+        if (configLoader.getTheme().equals("dark")) {
+            vbox.getStylesheets().add(String.valueOf(getClass().getResource("/css/AlertStyle.css")));
+        } else {
+            vbox.getStylesheets().add(String.valueOf(getClass().getResource("/css/AlertStyleLight.css")));
+        }
 
         label1.getStyleClass().add("BigText");
         label.getStyleClass().add("SmallText");
