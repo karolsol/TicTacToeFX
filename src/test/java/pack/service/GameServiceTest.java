@@ -38,4 +38,17 @@ class GameServiceTest {
         boolean result = GameService.placeSymbolOnBoard(this.board, "X", 1, 1);
         assertTrue(result);
     }
+
+    @Test
+    void shouldReturnFalseWhenPlayerIsNotWining() {
+        boolean result = GameService.isSpecifiedPlayerWining("X", board);
+        assertFalse(result);
+    }
+
+    @Test
+    void shouldReturnTrueWhenPlayerIsWining() {
+        GameService.placeSymbolOnBoard(board, "X", 1, 1);
+        boolean result = GameService.isSpecifiedPlayerWining("X", board);
+        assertTrue(result);
+    }
 }
