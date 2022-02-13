@@ -54,7 +54,7 @@ class GameServiceTest {
     @Test
     void shouldReturnTrueWhenPlayerIsWiningHorizontally() {
         GameService.placeSymbolOnBoard(board, Player.O, 1, 1);
-        GameService.placeSymbolOnBoard(board, Player.O, 1, 0);
+        GameService.placeSymbolOnBoard(board, Player.O, 0, 1);
         boolean result = GameService.isSpecifiedPlayerWining(Player.O, board);
         assertTrue(result);
     }
