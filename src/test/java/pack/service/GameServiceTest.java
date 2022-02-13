@@ -47,4 +47,25 @@ class GameServiceTest {
         boolean result = GameService.isSpecifiedPlayerWining(Player.X, board);
         assertTrue(result);
     }
+<<<<<<< HEAD
 }
+=======
+
+    @Test
+    void shouldReturnTrueWhenPlayerIsWiningHorizontally() {
+        GameService.placeSymbolOnBoard(board, Player.O, 1, 1);
+        GameService.placeSymbolOnBoard(board, Player.O, 1, 0);
+        boolean result = GameService.isSpecifiedPlayerWining(Player.O, board);
+        assertTrue(result);
+    }
+
+    @Test
+    void shouldReturnTrueWhenPlayerIsWiningVertically() {
+        GameService.placeSymbolOnBoard(board, Player.O, 1, 0);
+        GameService.placeSymbolOnBoard(board, Player.O, 1, 1);
+        GameService.placeSymbolOnBoard(board, Player.O, 1, 2);
+        boolean result = GameService.isSpecifiedPlayerWining(Player.O, board);
+        assertTrue(result);
+    }
+}
+>>>>>>> 8dacc94 (Add new unit tests for win checking)
