@@ -1,13 +1,15 @@
 package pack.service;
 
 import pack.Board;
+import pack.PlaceStatus;
+import pack.Player;
 
 public class GameService {
-    public static boolean placeSymbolOnBoard(Board board, String player, int x, int y) {
-        if (player.equals("X") || player.equals("O")) {
+    public static boolean placeSymbolOnBoard(Board board, Player player, int x, int y) {
+        if (player == Player.X || player == Player.O) {
             if (!isPlaceOnBoardTaken(board, x, y)) {
-                String[][] changedBoard = board.getBoard();
-                changedBoard[x][y] = player;
+                PlaceStatus[][] changedBoard = board.getBoard();
+                changedBoard[x][y] = PlaceStatus.valueOf(player.name());
                 board.setBoard(changedBoard);
                 return true;
             }
@@ -16,18 +18,20 @@ public class GameService {
     }
 
     private static boolean isPlaceOnBoardTaken(Board board, int x, int y) {
-        return !board.getBoard()[x][y].equals(" ");
+        return board.getBoard()[x][y] != PlaceStatus.FREE;
     }
 
-    public static boolean isSpecifiedPlayerWining(String player, Board board) {
-        String[][] boardArray = board.getBoard();
+    public static boolean isSpecifiedPlayerWining(Player player, Board board) {
+        PlaceStatus[][] boardArray = board.getBoard();
+        PlaceStatus status = PlaceStatus.valueOf(player.name());
         for (int i = 0; i < 3; i++) {
-            if (boardArray[0][i].equals(player) && boardArray[1][i].equals(player) && boardArray[2][i].equals(player) ||
-                    boardArray[i][0].equals(player) && boardArray[i][1].equals(player) && boardArray[i][2].equals(player)) {
-                return true;
-            }
+            if (boardArray[i][0] == status && boardArray[i][1] == status && boardArray[i][2] == status) return true;
+            if (boardArray[0][i] == status && boardArray[1][i] == status && boardArray[2][i] == status) return true;
         }
-        return boardArray[1][1].equals(player) && ((boardArray[0][0].equals(player) && boardArray[2][2].equals(player)) ||
-                (boardArray[0][2].equals(player) && boardArray[2][0].equals(player)));
+        if (boardArray[1][1] == status){
+            return (boardArray[0][0] == status && boardArray[2][2] == status)
+                    || (boardArray[0][2] == status && boardArray[2][0] == status);
+        }
+        return false;
     }
 }
