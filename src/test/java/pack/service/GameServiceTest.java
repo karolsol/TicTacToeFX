@@ -67,5 +67,27 @@ class GameServiceTest {
         boolean result = GameService.isSpecifiedPlayerWining(Player.O, board);
         assertTrue(result);
     }
+<<<<<<< HEAD
 }
 >>>>>>> 8dacc94 (Add new unit tests for win checking)
+=======
+
+    @Test
+    void shouldReturnTrueWhenThereIsDraw() {
+        GameService.placeSymbolOnBoard(board, Player.O, 0, 1);
+        GameService.placeSymbolOnBoard(board, Player.O, 0, 2);
+        GameService.placeSymbolOnBoard(board, Player.O, 1, 0);
+        GameService.placeSymbolOnBoard(board, Player.O, 1, 1);
+        GameService.placeSymbolOnBoard(board, Player.O, 1, 2);
+        GameService.placeSymbolOnBoard(board, Player.O, 2, 0);
+        boolean result = GameService.isDraw(board);
+        assertTrue(result);
+    }
+
+    @Test
+    void shouldReturnFalseWhenThereIsNotDraw() {
+        boolean result = GameService.isDraw(board);
+        assertFalse(result);
+    }
+}
+>>>>>>> db9d6f8 (Add function for checking if there is draw)

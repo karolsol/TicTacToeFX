@@ -32,4 +32,13 @@ public class GameService {
         }
         return false;
     }
+
+    public static boolean isDraw(Board board) {
+        for (PlaceStatus[] placeStatuses : board.getBoard()) {
+            for (PlaceStatus placeStatus : placeStatuses) {
+                if (placeStatus == PlaceStatus.FREE) return false;
+            }
+        }
+        return true;
+    }
 }
