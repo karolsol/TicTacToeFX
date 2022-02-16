@@ -30,7 +30,7 @@ public class AlertController {
         return answer.get();
     }
 
-    public void setAlertParams(String a) {
+    public void setAlertParams(Player a) {
         ConfigLoader configLoader = new ConfigLoader();
         if (configLoader.getTheme().equals("dark")) {
             vbox.getStylesheets().add(String.valueOf(getClass().getResource("/css/AlertStyle.css")));
@@ -41,9 +41,9 @@ public class AlertController {
         label1.getStyleClass().add("BigText");
         label.getStyleClass().add("SmallText");
 
-        if (a.equals("X") || a.equals("O")) {
+        if (a == Player.O || a == Player.X) {
             label1.setText("Player: " + a + " win");
-        } else if (a.equals("draw")) {
+        } else if (a == null) {
             label1.setText("Draw");
         }
 

@@ -2,19 +2,25 @@ package pack;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pack.service.GameService;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class Controller {
 
+    @FXML
+    public Pane buttonPane;
     @FXML
     Button zz;
     @FXML
@@ -34,111 +40,92 @@ public class Controller {
     @FXML
     Button tt;
     @FXML
-    TextArea txa1;
+    TextArea statusTextArea;
 
     private final Image X = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/X.png")));
     private final Image O = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/O.png")));
 
     final GameCore core = new GameCore();
 
-    private String playerTurn = "O";
+    Board board = new Board();
+
+    private Player playerTurn = Player.O;
 
     public void zz() {
-        setImage(zz, 0, 0);
+        buttonPressed(zz, 0, 0);
     }
 
     public void zo() {
-        setImage(zo, 0, 1);
+        buttonPressed(zo, 0, 1);
     }
 
     public void zt() {
-        setImage(zt, 0, 2);
+        buttonPressed(zt, 0, 2);
     }
 
     public void oz() {
-        setImage(oz, 1, 0);
+        buttonPressed(oz, 1, 0);
     }
 
     public void oo() {
-        setImage(oo, 1, 1);
+        buttonPressed(oo, 1, 1);
     }
 
     public void ot() {
-        setImage(ot, 1, 2);
+        buttonPressed(ot, 1, 2);
     }
 
     public void tz() {
-        setImage(tz, 2, 0);
+        buttonPressed(tz, 2, 0);
     }
 
     public void to() {
-        setImage(to, 2, 1);
+        buttonPressed(to, 2, 1);
     }
 
     public void tt() {
-        setImage(tt, 2, 2);
+        buttonPressed(tt, 2, 2);
     }
 
-    private void player(String a) {
-        if (core.win(a)) {
-            win(a);
-        } else if (core.draw()) {
-            win();
+
+    private void buttonPressed(Button button, int x, int y) {
+        if (GameService.placeSymbolOnBoard(board, playerTurn, x, y)) {
+            setSymbolOnButton(button);
+            if (GameService.isSpecifiedPlayerWining(playerTurn, board)) {
+                openDialogWindow(playerTurn);
+            } else if (GameService.isDraw(board)) {
+                openDialogWindow(null);
+            } else {
+                nextPlayer();
+            }
+        }
+        // TODO: else flesh button red
+    }
+
+    private void setSymbolOnButton(Button button) {
+        if (playerTurn == Player.O) {
+            button.setGraphic(new ImageView(O));
         } else {
-            if (a.equals("X")) {
-                playerTurn = "O";
-            } else if (a.equals("O")) {
-                playerTurn = "X";
-            }
-            txa1.setText("Player: " + playerTurn);
+            button.setGraphic(new ImageView(X));
         }
     }
 
-    private void setImage(Button x, int i, int b) {
-        if (core.isEmpty(i, b)) {
-            switch (playerTurn) {
-                case "X" -> setX(x);
-                case "O" -> setO(x);
-            }
-            core.play(i, b, playerTurn);
-            player(playerTurn);
-        }
-    }
-
-    private void win(String a) {
-        openDialogWindow(a);
-    }
-
-    private void win() {
-        win("draw");
+    private void nextPlayer() {
+        playerTurn = (playerTurn == Player.O) ? Player.X : Player.O;
+        statusTextArea.setText("Player: " + playerTurn.name());
     }
 
     private void retry() {
-        deleteImageFromButton(zz);
-        deleteImageFromButton(zo);
-        deleteImageFromButton(zt);
-        deleteImageFromButton(oz);
-        deleteImageFromButton(oo);
-        deleteImageFromButton(ot);
-        deleteImageFromButton(tz);
-        deleteImageFromButton(to);
-        deleteImageFromButton(tt);
-        core.clear();
+        List<Node> nodeOut = buttonPane.getChildren();
+        for (Node node : nodeOut) {
+            if(node instanceof Button){
+                ((Button)node).setGraphic(new ImageView());
+            }
+        }
+        board = new Board();
     }
 
-    private void deleteImageFromButton(Button x) {
-        x.setGraphic(new ImageView());
-    }
-
-    private void setX(Button x) {
-        x.setGraphic(new ImageView(X));
-    }
-
-    private void setO(Button x) {
-        x.setGraphic(new ImageView(O));
-    }
-
-    private void openDialogWindow(String a) {
+    private void openDialogWindow(Player player) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Alert.fxml"));
         Scene scene;
         try {
@@ -148,9 +135,9 @@ public class Controller {
 
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
-            stage.initOwner(txa1.getScene().getWindow());
+            stage.initOwner(statusTextArea.getScene().getWindow());
             stage.setScene(scene);
-            loader.<AlertController>getController().setAlertParams(a);
+            loader.<AlertController>getController().setAlertParams(player);
             stage.showAndWait();
 
             if (loader.<AlertController>getController().getResult()) {
