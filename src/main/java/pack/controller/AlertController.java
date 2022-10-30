@@ -1,10 +1,14 @@
-package pack;
+package pack.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import pack.service.ConfigService;
+import pack.Player;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AlertController {
@@ -31,8 +35,8 @@ public class AlertController {
     }
 
     public void setAlertParams(Player a) {
-        ConfigLoader configLoader = new ConfigLoader();
-        if (configLoader.getTheme().equals("dark")) {
+        ConfigService configService = new ConfigService();
+        if (configService.getTheme().equals("dark")) {
             vbox.getStylesheets().add(String.valueOf(getClass().getResource("/css/AlertStyle.css")));
         } else {
             vbox.getStylesheets().add(String.valueOf(getClass().getResource("/css/AlertStyleLight.css")));

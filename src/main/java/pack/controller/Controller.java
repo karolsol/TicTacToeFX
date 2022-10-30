@@ -1,4 +1,4 @@
-package pack;
+package pack.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pack.Board;
+import pack.Player;
 import pack.service.GameService;
 
 import java.io.IOException;
@@ -44,8 +46,6 @@ public class Controller {
 
     private final Image X = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/X.png")));
     private final Image O = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/O.png")));
-
-    final GameCore core = new GameCore();
 
     Board board = new Board();
 
@@ -116,8 +116,8 @@ public class Controller {
     }
 
     private void retry() {
-        List<Node> nodeOut = buttonPane.getChildren();
-        for (Node node : nodeOut) {
+        List<Node> nodes = buttonPane.getChildren();
+        for (Node node : nodes) {
             if(node instanceof Button){
                 ((Button)node).setGraphic(new ImageView());
             }
