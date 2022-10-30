@@ -1,11 +1,14 @@
 package pack.service;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigService {
 
-    public String getTheme(){
+    public String getTheme() {
         final Properties properties = new Properties();
         InputStream resourceAsStream;
         String theme;

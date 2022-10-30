@@ -118,8 +118,8 @@ public class Controller {
     private void retry() {
         List<Node> nodes = buttonPane.getChildren();
         for (Node node : nodes) {
-            if(node instanceof Button){
-                ((Button)node).setGraphic(new ImageView());
+            if (node instanceof Button) {
+                ((Button) node).setGraphic(new ImageView());
             }
         }
         board = new Board();

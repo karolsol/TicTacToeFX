@@ -4,11 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import pack.service.ConfigService;
 import pack.Player;
+import pack.service.ConfigService;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AlertController {

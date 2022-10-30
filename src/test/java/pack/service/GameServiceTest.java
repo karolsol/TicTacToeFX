@@ -6,7 +6,8 @@ import pack.Board;
 import pack.PlaceStatus;
 import pack.Player;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GameServiceTest {
 
