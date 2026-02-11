@@ -2,8 +2,10 @@
 
 A simple console-based Tic-Tac-Toe game implemented in JavaFx using Maven.
 
-![Gameplay demo](images/Screenshot_1.png)
-![Gameplay demo](images/Screenshot_2.png)
+<div align="center">
+  <img src="images/Screenshot_1.png" width="25%" style="margin-right: 15%; display: inline-block;">
+  <img src="images/Screenshot_2.png" width="25%" style="display: inline-block;">
+</div>
 
 ## Requirements
 
