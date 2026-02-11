@@ -3,7 +3,7 @@
 [![Tests](https://github.com/karolsol/TicTacToeFX/actions/workflows/maven-test.yml/badge.svg)](https://github.com/karolsol/TicTacToeFX/actions/workflows/maven-test.yml)
 
 ---
-A simple console-based Tic-Tac-Toe game implemented in JavaFx using Maven.
+A simple Tic-Tac-Toe game implemented in JavaFx using Maven.
 
 <div align="center">
   <img src="images/Screenshot_1.png" width="25%" style="margin-right: 15%; display: inline-block;">
