@@ -1,0 +1,44 @@
+# Tic-Tac-Toe
+
+A simple console-based Tic-Tac-Toe game implemented in JavaFx using Maven.
+
+![Gameplay demo](images/Screenshot_1.png)
+![Gameplay demo](images/Screenshot_2.png)
+
+## Requirements
+
+- Java 16 or higher
+- Maven 3.9+
+
+## Building the project
+
+```bash
+mvn clean compile
+```
+
+## Running the game
+
+```bash
+mvn javafx:run
+```
+
+## ~~Build the JAR:~~
+
+**That option is not working for now**
+
+```bash
+mvn clean package
+java -jar target/tictactoe-1.0-SNAPSHOT.jar
+```
+
+## Testing
+
+Run unit tests:
+
+```bash
+mvn test
+```
+
+## License
+
+This project is open source and available under the MIT License.
