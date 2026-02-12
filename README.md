@@ -27,9 +27,7 @@ mvn clean compile
 mvn javafx:run
 ```
 
-## ~~Build the JAR:~~
-
-**That option is not working for now**
+## Build JAR archive and run it:
 
 ```bash
 mvn clean package
