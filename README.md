@@ -31,7 +31,7 @@ mvn javafx:run
 
 ```bash
 mvn clean package
-java -jar target/tictactoe-1.0-SNAPSHOT.jar
+java -jar target/TicTacToeFX.jar
 ```
 
 ## Testing
