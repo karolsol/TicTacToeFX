@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/github/license/karolsol/TicTacToeFX" alt="License">
 </p>
 
-A simple Tic-Tac-Toe game implemented in JavaFx using Maven.
+A simple cross platform Tic-Tac-Toe game implemented in JavaFx using Maven.
 
 ## Screenshots
 <div align="center">
@@ -15,29 +15,53 @@ A simple Tic-Tac-Toe game implemented in JavaFx using Maven.
 
 ## Requirements
 
-- Java 16 or higher
+- Resonably new computer with Windows, Linux or MacOS(Intel based ones are **not** supported)
 - Maven 3.9+(build and development only)
 
-## Running the game
+## Running the game(Windows)
+With Powershell:
 1. First you need to download TicTacToeFX.jar from Release on the right or by using command line:
-```bash
-wget https://github.com/karolsol/TicTacToeFX/releases/download/v0.0.2/TicTacToeFX.jar
+```bach
+wget https://github.com/karolsol/TicTacToeFX/releases/download/v0.0.3/TicTacToeFX-Windows.zip
 ```
-2. Then run it:
-```bash
+2. Unzip it:
+```bach
+cd %USERPROFILE%\Downloads
+Expand-Archive TicTacToeFX-Windows.zip .
+```
+3. And run:
+```bach
+TicTacToeFX\bin\ticTacToeFx.bat
+```
+or using GUI:
+1. Open your download folder in file explorer, open right click menu and click unzip here option.
+2. go to TicTacToeFX, then bin and double click on ticTacToeFx.bat
+
+## Running the game(Mac and Linux)
+With Powershell:
+1. First you need to download TicTacToeFX.jar from Release on the right or by using command line:
+```bach
+wget https://github.com/karolsol/TicTacToeFX/releases/download/v0.0.3/TicTacToeFX-{Linux,Mac}.zip
+```
+2. Unzip it:
+```bach
 cd ~/Downloads
-# or for Windows: 
-#cd %USERPROFILE%\Downloads
-
-java -jar TicTacToeFX.jar
+tar xf TicTacToeFX-{Linux,Mac}.tar.gz .
 ```
+3. And run:
+```bash
+TicTacToeFX\bin\ticTacToeFx
+```
+or using GUI:
+1. Open your download folder in file explorer, open right click menu and click unzip here option.
+2. go to TicTacToeFX, then bin and double click on ticTacToeFx
 
-## Build JAR archive yourself
+## Build it yourself
 
 ```bash
-mvn clean package
-java -jar target/TicTacToeFX.jar
+mvn clean javafx:jlink
 ```
+and run it exacly like from release.
 
 ## Testing
 
