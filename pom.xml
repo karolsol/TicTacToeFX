@@ -70,7 +70,6 @@
                     <noManPages>true</noManPages>
                     <launcher>ticTacToeFx</launcher>
                     <jlinkImageName>TicTacToeFX</jlinkImageName>
-                    <jlinkZipName>TicTacToeFX</jlinkZipName>
                 </configuration>
             </plugin>
             <plugin>
