@@ -112,7 +112,7 @@ public class Controller {
 
     private void nextPlayer() {
         playerTurn = (playerTurn == Player.O) ? Player.X : Player.O;
-        statusTextArea.setText("Player: " + playerTurn.name());
+        statusTextArea.setText(String.format("Player: %s ", playerTurn.name()));
     }
 
     private void retry() {
