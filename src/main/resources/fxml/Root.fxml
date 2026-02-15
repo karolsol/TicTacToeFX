@@ -13,7 +13,7 @@
     <rowConstraints>
         <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
     </rowConstraints>
-    <TextArea fx:id="statusTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" text="Player: O">
+    <TextArea fx:id="statusTextArea" editable="false" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" text="Player: O">
         <font>
             <Font name="System Italic" size="53.0"/>
         </font>
