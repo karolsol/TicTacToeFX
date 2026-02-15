@@ -7,7 +7,11 @@ on:
 
 jobs:
   build-and-release:
-    runs-on: ubuntu-latest
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     permissions:
       contents: write
 
@@ -35,13 +39,31 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Build with Maven
-        run: mvn clean package -DskipTests
+      - name: Build with Maven (jlink)
+        run: mvn clean javafx:jlink
+
+      - name: Prepare Package (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          Compress-Archive -Path target/TicTacToeFX -DestinationPath TicTacToeFX-Windows.zip
+
+      - name: Prepare Package (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          tar -czvf TicTacToeFX-Linux.tar.gz -C target TicTacToeFX
+
+      - name: Prepare Package (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          tar -czvf TicTacToeFX-Mac.tar.gz -C target TicTacToeFX
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: target/TicTacToeFX.jar
+          files: |
+            TicTacToeFX-Windows.zip
+            TicTacToeFX-Linux.tar.gz
+            TicTacToeFX-Mac.tar.gz
           body_path: ./release_body.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
